@@ -1,9 +1,7 @@
-# to import own modules
+
 import sys
-# to calculate and wait a random time
 import random
 import time
-# Asit functionality
 import FwAccount
 
 def main(credential_path):
