@@ -1,24 +1,28 @@
 
 import os
 import sys
+import requests
 sys.path.append("./src")
 sys.path.append("./lib")
 import asit
 import update
-import requests
 
-NAME = "Asit"
+PROJECT = "Asit"
 VERSION = "1.1.0"
 
 def main():
 #    try:
-    if update.main(NAME, VERSION):
-        return 1
     credential_path = "./data/accounts.txt"
+    # check for updates
+    if update.check(PROJECT, VERSION):
+        return 1
+    # just do the thing
     if asit.main(credential_path):
         return 1
 #    except:
 #        print("\t[-] Failed to connect to the server")
 #        input("\t[+] Press Enter to continue")
 #        return 1
+
+
 main()

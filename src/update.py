@@ -4,22 +4,28 @@ import shutil
 import zipfile
 import requests
 
-def check(project_name, actual_version):
-    print("[*] Checking for updates")
-    project_url = "https://github.com/6H057WH1P3/" + project_name + "/"
-    release_url = project_url + "releases"
-    release_request = requests.get(release_url)
-    search_text = '<span class="tag-name">'
-    text_length = len(search_text)
-    position = release_request.text.find(search_text)
-    if position == -1:
-        print("[-] There are no releases available for this project.")
-        return 0
-    latest_version = release_request.text[position + text_length : position + text_length + 5]
-    if actual_version >= latest_version:
-        print("[+] Script is already up to date")
-        return 0
-    print("[*] A new update is available")
+class GithubUpdater:
+
+    def __init__(self, project_name, actual_version):
+        self.actual_version = actual_version
+        self.project_url = "https://github.com/6H057WH1P3/"
+
+    def check(project_name, actual_version):
+        print("[*] Checking for updates")
+        project_url = "https://github.com/6H057WH1P3/" + project_name + "/"
+        release_url = project_url + "releases"
+        release_request = requests.get(release_url)
+        search_text = '<span class="tag-name">'
+        text_length = len(search_text)
+        position = release_request.text.find(search_text)
+        if position == -1:
+            print("[-] There are no releases available for this project.")
+            return 0
+        latest_version = release_request.text[position + text_length : position + text_length + 5]
+        if actual_version >= latest_version:
+            print("[+] Script is already up to date")
+            return 0
+        print("[*] A new update is available")
 
     print("[*] Starting download")
     update_url = project_url + "archive/" + latest_version + ".zip"
