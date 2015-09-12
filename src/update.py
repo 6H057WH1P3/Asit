@@ -8,10 +8,11 @@ class GithubUpdater:
 
     def __init__(self, author, project_name, actual_version):
         self.actual_version = actual_version
+        self.project_name = project_name
         self.project_url = "https://github.com/" + author + "/" + project_name + "/"
         self.latest_version = ""
         self.update_zip = ""
-        self.update_dir = "./update"
+        self.update_dir = "./temp"
         self.project_dir = "."
 
     def check(self):
@@ -22,6 +23,7 @@ class GithubUpdater:
 
         if begin == -1:
             raise RuntimeWarning("There are no releases available for this project.")
+            return 0
 
         begin += len(begin_text)
         end = release_request.text.find('</span>', begin)
@@ -55,8 +57,10 @@ class GithubUpdater:
 
     def apply(self):
         try:
-            for src_dir, dirs, files in os.walk(self.update_dir):
-                dst_dir = src_dir.replace(self.update_dir, self.project_dir)
+            expanded_update_dir = self.update_dir + "/" + self.project_name + "-" + self.latest_version.strip("v")
+
+            for src_dir, dirs, files in os.walk(expanded_update_dir):
+                dst_dir = src_dir.replace(expanded_update_dir, self.project_dir)
                 if not os.path.exists(dst_dir):
                     os.mkdir(dst_dir)
                 for file_ in files:
@@ -97,3 +101,10 @@ class GithubUpdater:
             print("[+] Update finished successfully")
         except Exception as e:
             print("[!] Update Error: " + str(e))
+
+    def silence_update(self):
+        if not self.check():
+            return 0
+        self.download()
+        self.extract()
+        self.apply()
