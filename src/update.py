@@ -26,7 +26,7 @@ class GithubUpdater:
         begin += len(begin_text)
         end = release_request.text.find('</span>', begin)
         self.latest_version = release_request.text[begin : end]
-        if actual_version >= latest_version:
+        if self.actual_version >= self.latest_version:
             return 0
         else:
             return 1
