@@ -5,10 +5,10 @@ import requests
 sys.path.append("./src")
 sys.path.append("./lib")
 import asit
-import update
+import updater
 
 PROJECT = "Asit"
-VERSION = "1.1.0"
+VERSION = "v1.1.1"
 
 def main():
 #    try:
