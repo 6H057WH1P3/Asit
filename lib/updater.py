@@ -47,11 +47,13 @@ class GithubUpdater:
 
             for block in download.iter_content(1024):
                 handle.write(block)
+        return 0
 
     def extract(self):
         try:
             with zipfile.ZipFile(self.update_zip, "r") as handle:
                 handle.extractall(self.update_dir)
+            return 0
         except:
             raise RuntimeError("Extraction failed")
 
@@ -69,16 +71,17 @@ class GithubUpdater:
                     if os.path.exists(dst_file):
                         os.remove(dst_file)
                     shutil.move(src_file, dst_dir)
+            return 0
         except:
-            raise RuntimeError("Critical update error")
+            raise RuntimeError("Error while overwriting files")
 
     def clear(self):
         try:
             os.remove(self.update_zip)
             shutil.rmtree(self.update_dir)
+            return 0
         except:
             raise RuntimeError("Cant delete update files")
-        return 0
 
     def update(self):
         try:
@@ -99,6 +102,7 @@ class GithubUpdater:
             print("[*] Updating content, do not cancel the script now")
             self.apply()
             print("[+] Update finished successfully")
+            return 0
         except Exception as e:
             print("[!] Update Error: " + str(e))
 
@@ -108,3 +112,4 @@ class GithubUpdater:
         self.download()
         self.extract()
         self.apply()
+        return 0

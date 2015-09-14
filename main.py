@@ -7,22 +7,17 @@ sys.path.append("./lib")
 import asit
 import updater
 
+AUTHOR = "6H057WH1P3"
 PROJECT = "Asit"
-VERSION = "v1.1.1"
+VERSION = "v1.1.3"
 
 def main():
-#    try:
-    credential_path = "./data/accounts.txt"
+    accounts_path = "./data/accounts.txt"
     # check for updates
-    if update.check(PROJECT, VERSION):
-        return 1
+    updater = updater.GithubUpdater(AUTHOR, PROJECT, VERSION)
+    updater.update()
     # just do the thing
-    if asit.main(credential_path):
-        return 1
-#    except:
-#        print("\t[-] Failed to connect to the server")
-#        input("\t[+] Press Enter to continue")
-#        return 1
-
+    bot = asit.ManageAccounts(accounts_path)
+    bot.Manage()
 
 main()
