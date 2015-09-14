@@ -9,7 +9,7 @@ import updater
 
 AUTHOR = "6H057WH1P3"
 PROJECT = "Asit"
-VERSION = "v1.1.3"
+VERSION = "v1.1.4"
 
 def main():
     accounts_path = "./data/accounts.txt"
