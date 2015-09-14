@@ -22,7 +22,7 @@ class Account:
             self.basic_url = "http://world" + self.world + ".freewar.com/freewar/internal/"
             self.header = {"Host": "world" + self.world + ".freewar.com", "Connection": "keep-alive", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64)"}
 
-    def Login(self):
+    def login(self):
         print("\t[*] Logging in")
         login_url = self.basic_url + "index.php"
         # really annoying
@@ -40,7 +40,7 @@ class Account:
         return 0
 
     # nesseccary to access all other links in fw main window after login
-    def Redirect(self):
+    def redirect(self):
         print("\t[*] Redirecting")
         redirect_url = self.basic_url + "frset.php"
         requests.get(redirect_url, headers = self.header, cookies = self.cookie)
@@ -48,7 +48,7 @@ class Account:
         return 0
 
     # function to train characters abilities
-    def Train(self):
+    def train(self):
         # the training sequence
         print("\t[*] Training")
         train_url = self.basic_url + "ability.php"
@@ -96,7 +96,7 @@ class Account:
         return 0
 
     # function to pick up accounts oil if he's on the right field for that
-    def Oil(self):
+    def oil(self):
         print("\t[*] Picking up oil")
         # requesting content of main frame
         main_url = self.basic_url + "main.php"
@@ -118,19 +118,19 @@ class Account:
         return 0
 
     # for a clean session
-    def Logout(self):
+    def logout(self):
         print("\t[*] Logging out")
         logout_url = self.basic_url + "logout.php"
         requests.get(logout_url, headers = self.header, cookies = self.cookie)
         print("\t[+] Logged out")
         return 0
 
-    def AutomaticSit(self):
-        self.Login()
-        self.Redirect()
-        self.Train()
-        self.Oil()
-        self.Logout()
+    def automatic_sit(self):
+        self.login()
+        self.redirect()
+        self.train()
+        self.oil()
+        self.logout()
 
 
 class ManageAccounts:
@@ -146,7 +146,7 @@ class ManageAccounts:
                 if len(splitted_line) == 5:
                     self.accounts.append(splitted_line)
 
-    def Manage(self):
+    def manage(self):
         while len(self.accounts) > 0:
             for language, world, user, password, ability in self.accounts:
                 # skipping credentials of the same world
@@ -162,7 +162,7 @@ class ManageAccounts:
                 # if not skipped, handling the credential
                 print("\n[*] World: " + world + "     Account: " + user + "     Server: " + language)
                 FWAccount = Account(language, world, user, password, ability)
-                FWAccount.AutomaticSit()
+                FWAccount.automatic_sit()
 
             # writing memorized credentials back to be handled
             if len(self.later) > 0:

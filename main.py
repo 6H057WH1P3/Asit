@@ -18,6 +18,6 @@ def main():
     update_handler.update()
     # just do the thing
     bot = asit.ManageAccounts(accounts_path)
-    bot.Manage()
+    bot.manage()
 
 main()
