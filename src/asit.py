@@ -126,11 +126,15 @@ class Account:
         return 0
 
     def automatic_sit(self):
-        self.login()
-        self.redirect()
-        self.train()
-        self.oil()
-        self.logout()
+        try:
+            self.login()
+            self.redirect()
+            self.train()
+            self.oil()
+            self.logout()
+        except:
+            print("[!] Connection Error.")
+            return 1
 
 
 class ManageAccounts:
@@ -162,7 +166,8 @@ class ManageAccounts:
                 # if not skipped, handling the credential
                 print("\n[*] World: " + world + "     Account: " + user + "     Server: " + language)
                 FWAccount = Account(language, world, user, password, ability)
-                FWAccount.automatic_sit()
+                if FWAccount.automatic_sit():
+                    return 1
 
             # writing memorized credentials back to be handled
             if len(self.later) > 0:

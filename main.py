@@ -1,15 +1,15 @@
 
 import os
 import sys
-import requests
 sys.path.append("./src")
 sys.path.append("./lib")
+import requests
 import asit
 import updater
 
 AUTHOR = "6H057WH1P3"
 PROJECT = "Asit"
-VERSION = "v1.1.5"
+VERSION = "v1.1.6"
 
 def main():
     accounts_path = "./data/accounts.txt"
