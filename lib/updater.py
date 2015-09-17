@@ -16,13 +16,13 @@ class GithubUpdater:
         self.project_dir = "."
 
     def check(self):
-        release_url = self.project_url + "releases"
+        release_url = self.project_url + "tags"
         release_request = requests.get(release_url)
         begin_text = '<span class="tag-name">'
         begin = release_request.text.find(begin_text)
 
         if begin == -1:
-            raise RuntimeWarning("There are no releases available for this project.")
+            raise RuntimeWarning("There are no tags available for this project.")
             return 0
 
         begin += len(begin_text)
@@ -105,6 +105,7 @@ class GithubUpdater:
             return 0
         except Exception as e:
             print("[!] Update Error: " + str(e))
+            return 1
 
     def silence_update(self):
         if not self.check():
