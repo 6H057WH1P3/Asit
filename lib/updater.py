@@ -17,7 +17,10 @@ class GithubUpdater:
 
     def check(self):
         release_url = self.project_url + "tags"
-        release_request = requests.get(release_url)
+        try:
+            release_request = requests.get(release_url)
+        except:
+            raise RuntimeError("Connection failed.")
         begin_text = '<span class="tag-name">'
         begin = release_request.text.find(begin_text)
 
@@ -57,11 +60,13 @@ class GithubUpdater:
         except:
             raise RuntimeError("Extraction failed")
 
-    def apply(self):
+    def apply(self, excluded_dir = "data"):
         try:
             expanded_update_dir = self.update_dir + "/" + self.project_name + "-" + self.latest_version.strip("v")
 
             for src_dir, dirs, files in os.walk(expanded_update_dir):
+                if src_dir.find(excluded_dir) >= 0:
+                    continue
                 dst_dir = src_dir.replace(expanded_update_dir, self.project_dir)
                 if not os.path.exists(dst_dir):
                     os.mkdir(dst_dir)
@@ -81,7 +86,7 @@ class GithubUpdater:
             shutil.rmtree(self.update_dir)
             return 0
         except:
-            raise RuntimeError("Cant delete update files")
+            raise RuntimeError("Can't delete update files")
 
     def update(self):
         try:
@@ -101,6 +106,11 @@ class GithubUpdater:
 
             print("[*] Updating content, do not cancel the script now")
             self.apply()
+            print("[+] Updated files successfully")
+
+            print("[*] Start cleaning")
+            self.clear()
+            print("[+] Cleaning complete")
             print("[+] Update finished successfully")
             return 0
         except Exception as e:
@@ -113,4 +123,5 @@ class GithubUpdater:
         self.download()
         self.extract()
         self.apply()
+        self.clear()
         return 0
