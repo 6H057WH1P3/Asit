@@ -23,6 +23,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "core.py",
+			"settings":
+			{
+				"buffer_size": 7170,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tests.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -69,10 +85,14 @@
 	},
 	"expanded_folders":
 	[
-		"/home/christian/Data/code/python/Asit"
+		"/home/christian/Data/code/python/Asit",
+		"/home/christian/Data/code/python/Asit/data",
+		"/home/christian/Data/code/python/Asit/lib"
 	],
 	"file_history":
 	[
+		"/home/christian/Data/code/python/Asit/__init__.py",
+		"/home/christian/Data/personal/freewar/profile.bb",
 		"/home/christian/Data/code/coder-dojo/CoderDojoPotsdam.github.io/.git/config",
 		"/home/christian/Data/code/coder-dojo/Defend/.git/config",
 		"/home/christian/Data/code/coder-dojo/material/.git/config",
@@ -140,8 +160,72 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "core.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 7170,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14,
+								14
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tests.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"incomplete_sync": null,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
