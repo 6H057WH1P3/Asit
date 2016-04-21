@@ -1,0 +1,238 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"fon",
+				"font"
+			],
+			[
+				"the",
+				"the_field"
+			],
+			[
+				"com",
+				"comm-section	Comment - Full section comment"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pro",
+		"selected_items":
+		[
+			[
+				"pro",
+				"Project: Close"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/christian/Data/code/python/Asit"
+	],
+	"file_history":
+	[
+		"/home/christian/Data/code/coder-dojo/CoderDojoPotsdam.github.io/.git/config",
+		"/home/christian/Data/code/coder-dojo/Defend/.git/config",
+		"/home/christian/Data/code/coder-dojo/material/.git/config",
+		"/home/christian/Data/code/coder-dojo/organize/.git/config",
+		"/home/christian/Data/code/coder-dojo/software/.git/config",
+		"/home/christian/Data/code/wordpress/reisetagebuch/.git/config",
+		"/home/christian/Data/code/python/Asit/.git/config",
+		"/home/christian/Data/code/wordpress/medienhilfe/.git/config",
+		"/home/christian/Data/code/snippets/.git/config",
+		"/home/christian/Data/code/python/ftp-sync/crawl-client/.git/config",
+		"/home/christian/Data/code/python/ftp-sync/download-client/.git/config",
+		"/home/christian/Data/code/wordpress/webentwicklung/.git/config",
+		"/home/christian/Data/code/wordpress/standard-wordpress-project/.git/config",
+		"/home/christian/Data/code/wordpress/gruenekoepfe/wordpress/wp-content/themes/gruenekoepfe/style.css",
+		"/home/christian/Data/code/wordpress/gruenekoepfe/wordpress/wp-content/themes/gruenekoepfe/less/style.less",
+		"/home/christian/Data/code/wordpress/gruenekoepfe/wordpress/wp-content/themes/gruenekoepfe/single.php",
+		"/home/christian/Data/code/wordpress/gruenekoepfe/wordpress/wp-content/themes/gruenekoepfe/frontpage.php",
+		"/home/christian/Data/desk/freixenet.txt",
+		"/home/christian/Data/code/wordpress/gruenekoepfe/wordpress/wp-content/themes/gruenekoepfe/header.php",
+		"/home/christian/Data/code/wordpress/wpHardSelling/.git/config",
+		"/home/christian/Data/code/wordpress/gruenekoepfe/.git/config",
+		"/home/christian/.config/sublime-text-3/Packages/User/less2css.sublime-settings",
+		"/home/christian/Data/code/wordpress/webentwicklung/webentwicklung/wp-content/themes/friedow/less/style.less",
+		"/home/christian/Data/code/wordpress/webentwicklung/webentwicklung.sublime-project",
+		"/home/christian/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/christian/Data/code/wordpress/webentwicklung/wp-content/themes/friedow/less/style.less",
+		"/home/christian/Data/code/wordpress/webentwicklung/wp-content/themes/friedow/style.css",
+		"/home/christian/.config/sublime-text-3/Packages/LESS/LESS.sublime-settings",
+		"/home/christian/Data/code/wordpress/webentwicklung/wp-content/themes/friedow/.sublime-project",
+		"/home/christian/.config/sublime-text-3/Packages/Less2Css/less2css.sublime-settings",
+		"/home/christian/Downloads/friedow/style.css",
+		"/home/christian/Data/code/wordpress/webentwicklung/sftp-config.json"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"gruenekoepfe-max-width"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 112.0
+	},
+	"pinned_build_system": "",
+	"project": "asit.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Data/code/wordpress/gruenekoepfe/gruenekoepfe.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 283.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
