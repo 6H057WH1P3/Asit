@@ -1,0 +1,3 @@
+# Requirements for Asit
+## Requests library for HTTP requests
+requests
