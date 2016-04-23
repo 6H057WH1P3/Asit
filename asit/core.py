@@ -3,11 +3,29 @@ import random
 import time
 import requests
 
+import logging
+import logging.config
+
+logging.config.fileConfig('logging_config.ini')
+logger = logging.getLogger('core')
+
+def forge_basic_url(language, world):
+    if language == 'de':
+        return 'http://welt' + self.world + '.freewar.de/freewar/internal/'
+    elif language == 'en':
+        return 'http://world' + self.world + '.freewar.com/freewar/internal/'
+
+def forge_header(language, world):
+    if language == 'de':
+        return {'Host': 'welt' + self.world + '.freewar.de', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)'}
+    elif language == 'en':
+        return {'Host': 'world' + self.world + '.freewar.com', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)'}
+
 class Account:
 
     # C'tor
     def __init__(self, language, world, user, password, ability):
-        # def standard class variables
+        # def standard account variables
         self.cookie = ''
         self.language = language
         self.world = world
@@ -15,15 +33,11 @@ class Account:
         self.password = password
         self.ability = ability
         # preparing header and basic url for get and post requests
-        if language == 'de':
-            self.basic_url = 'http://welt' + self.world + '.freewar.de/freewar/internal/'
-            self.header = {'Host': 'welt' + self.world + '.freewar.de', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)'}
-        elif language == 'en':
-            self.basic_url = 'http://world' + self.world + '.freewar.com/freewar/internal/'
-            self.header = {'Host': 'world' + self.world + '.freewar.com', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)'}
+        self.basic_url = forge_basic_url(self.language, self.world)
+        self.header = forge_header(self.language, self.world)
 
     def login(self):
-        print('\t[*] Logging in')
+        logger.info('Logging in')
         login_url = self.basic_url + 'index.php'
         # really annoying
         if self.language == 'de':
@@ -36,25 +50,25 @@ class Account:
         login_request = requests.post(login_url, data = login_payload, headers = self.header)
         # nesseccary for session management in other requests
         self.cookie = login_request.cookies
-        print('\t[+] Login successful')
+        logger.info('Login successful')
         return 0
 
     # nesseccary to access all other links in fw main window after login
     def redirect(self):
-        print('\t[*] Redirecting')
+        logger.info('Redirecting')
         redirect_url = self.basic_url + 'frset.php'
         requests.get(redirect_url, headers = self.header, cookies = self.cookie)
-        print('\t[+] Redirect successful')
+        logger.info('Redirect successful')
         return 0
 
     # function to train characters abilities
     def train(self):
         # the training sequence
-        print('\t[*] Training')
+        logger.info('Training')
         train_url = self.basic_url + 'ability.php'
         train_payload = {'action': 'train', 'ability_id': self.ability}
         requests.get(train_url, params = train_payload, headers = self.header, cookies = self.cookie)
-        print('\t[+] Training successful')
+        logger.info('Training successful')
 
         # preparing for the training status request
         status_payload = {'action': 'show_ability', 'ability_id': self.ability}
@@ -67,7 +81,7 @@ class Account:
         elif self.language == 'en':
             search_parameters = ['actual level: ', 'maximal level: ']
 
-        output = '\t[*] Actual level: '
+        output = '\tActual level: '
         first = True
 
         # looking for search parameters in http response
@@ -78,7 +92,7 @@ class Account:
                 if (position == -1):
                     raise RuntimeError('Bad Request')
             except RuntimeError:
-                print('\t[-] Could not found ability level.')
+                logger.info('Could not found ability level.')
                 return 1
             # TODO: Hier gehts weiter
             text_length = len(search_text)
@@ -92,12 +106,12 @@ class Account:
                 first = False
                 output += ' / '
 
-        print(output)
+        logger.info(output)
         return 0
 
     # function to pick up accounts oil if he's on the right field for that
     def oil(self):
-        print('\t[*] Picking up oil')
+        logger.info('Picking up oil')
         # requesting content of main frame
         main_url = self.basic_url + 'main.php'
         main_request = requests.get(main_url, headers = self.header, cookies = self.cookie)
@@ -108,7 +122,7 @@ class Account:
             if (position == -1):
                 raise RuntimeError('wrong position')
         except RuntimeError:
-            print('\t[-] Oil isn't ready yet or account is on the wrong position.')
+            logger.info("Oil isn't ready yet or account is on the wrong position.")
             return 1
 
         # pincking up the oil
@@ -119,10 +133,10 @@ class Account:
 
     # for a clean session
     def logout(self):
-        print('\t[*] Logging out')
+        logger.info('Logging out')
         logout_url = self.basic_url + 'logout.php'
         requests.get(logout_url, headers = self.header, cookies = self.cookie)
-        print('\t[+] Logged out')
+        logger.info('Logged out')
         return 0
 
     def automatic_sit(self):
@@ -133,7 +147,7 @@ class Account:
             self.oil()
             self.logout()
         except:
-            print('[!] Connection Error.')
+            logger.critical('Connection Error.')
             return 1
 
 
@@ -164,7 +178,7 @@ class ManageAccounts:
                     continue
 
                 # if not skipped, handling the credential
-                print('\n[*] World: ' + world + '     Account: ' + user + '     Server: ' + language)
+                logger.info('World: ' + world + '     Account: ' + user + '     Server: ' + language)
                 FWAccount = Account(language, world, user, password, ability)
                 if FWAccount.automatic_sit():
                     return 1
@@ -172,7 +186,7 @@ class ManageAccounts:
             # writing memorized credentials back to be handled
             if len(self.later) > 0:
                 random_time = random.randint(180, 300)
-                print('[*] Wating ' + str(random_time) + ' Seconds to log other accounts savely.')
+                logger.info('Wating ' + str(random_time) + ' Seconds to log other accounts savely.')
                 time.sleep(random_time)
                 self.accounts = self.later
                 self.later.clear()
